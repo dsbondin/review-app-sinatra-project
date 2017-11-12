@@ -9,7 +9,10 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if !params[:username].empty? and !params[:password].empty?
+    if username_taken?
+      session[:notice] = "This username is taken, please try something else."
+      redirect '/signup'
+    elsif !params[:username].empty? and !params[:password].empty?
       @user = User.create(params)
       session[:user_id] = @user.id
       redirect '/products'
@@ -27,11 +30,12 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    @user = User.find_by(params[:username])
-    if @user and @user.authenticate(params[:password])
-      session[:user_id] = @user.id
+    user = User.find_by(username: params[:username])
+    if user and user.authenticate(params[:password])
+      session[:user_id] = user.id
       redirect '/products'
     else
+      session[:notice] = "Incorrect username or password, please try again."
       redirect '/login'
     end
   end

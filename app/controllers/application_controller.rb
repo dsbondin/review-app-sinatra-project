@@ -15,6 +15,10 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:user_id])
     end
+
+    def username_taken?
+      !!User.find_by(username: params[:username])
+    end
   end
 
   get '/' do
