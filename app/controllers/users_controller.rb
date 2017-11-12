@@ -17,6 +17,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect '/products'
     else
+      session[:notice] = "Username or password can't be empty."
       redirect '/signup'
     end
   end

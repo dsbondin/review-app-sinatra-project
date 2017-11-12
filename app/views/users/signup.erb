@@ -2,6 +2,7 @@
   <h1>Sign Up</h1>
 
   <%= session[:notice] %>
+  <% session[:notice] = "" %> <!-- clear error message for future redirects -->
 
   <p>
     <form action="/signup" method="POST">
@@ -10,5 +11,6 @@
       <input type="submit" value="Sign Up">
     </form>
   </p>
+  <p>Or visit <a href="/login">Log In</a> page</p>
 
 </center>
