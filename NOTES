@@ -1,0 +1,12 @@
+User has many Reviews
+Review belongs to a User
+
+Product has many Reviews
+Review belongs to a Product
+
+User has many reviewed Products through Reviews
+Product has many Users-reviewers through Reviews
+
+User columns: name, password_digest
+Product columns: name
+Review columns: content, user_id, product_id
