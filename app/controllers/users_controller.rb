@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  get '/users/signup' do
+  get '/signup' do
     if !logged_in?
       erb :'users/signup'
     else
@@ -8,12 +8,37 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/users/login' do
+  post '/signup' do
+    if !params[:username].empty? and !params[:password].empty?
+      @user = User.create(params)
+      session[:user_id] = @user.id
+      redirect '/products'
+    else
+      redirect '/signup'
+    end
+  end
+
+  get '/login' do
     if !logged_in?
       erb :'users/login'
     else
       redirect '/products'
     end
+  end
+
+  post '/login' do
+    @user = User.find_by(params[:username])
+    if @user and @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect '/products'
+    else
+      redirect '/login'
+    end
+  end
+
+  get '/logout' do
+    session.clear if session[:user_id]
+    redirect '/'
   end
 
 
