@@ -1,0 +1,20 @@
+<% if logged_in? %>
+Logged in as: <b><%= current_user.username %></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="/logout">Log Out</a>
+<% end %>
+
+<center>
+<h1><%= @product.name %></h1>
+</center>
+
+<h3>Product Reviews</h3>
+<ul>
+  <% @product.reviews.each do |review| %>
+    <li><%= review.content %><br>
+    <%= review.rating %></li>
+  <% end %>
+</ul>
+
+
+<p><a href="/reviews/new">Add a review</a></p>
+<p><a href="/products">Back to products page</a></p>

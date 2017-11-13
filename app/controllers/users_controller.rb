@@ -10,14 +10,14 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if username_taken?
-      session[:notice] = "This username is taken, please try something else."
+      session[:notice] = "This username is taken, please try something else"
       redirect '/signup'
     elsif !params[:username].empty? and !params[:password].empty?
       @user = User.create(params)
       session[:user_id] = @user.id
       redirect '/products'
     else
-      session[:notice] = "Username or password can't be empty."
+      session[:notice] = "Username or password can't be empty"
       redirect '/signup'
     end
   end
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect '/products'
     else
-      session[:notice] = "Incorrect username or password, please try again."
+      session[:notice] = "Incorrect username or password, please try again"
       redirect '/login'
     end
   end
@@ -45,6 +45,5 @@ class UsersController < ApplicationController
     session.clear if session[:user_id]
     redirect '/'
   end
-
 
 end

@@ -1,1 +1,14 @@
-Logged in as: <b><%= current_user.username %></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="/logout">Log Out</a>
+<% if logged_in? %>
+Logged in as: <b><%= current_user.username %></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="/logout">Log Out</a>
+<% end %>
+
+<center><h1>Products</h1></center>
+
+<ul>
+  <% @products.each do |product| %>
+    <li><a href="/products/<%=product.id%>"><%= product.name %></a></li>
+  <% end %>
+</ul>
+
+<p><a href="/products/new">Add a new product</a></p>
