@@ -1,1 +1,17 @@
-add review
+<% if logged_in? %>
+Logged in as: <b><%= current_user.username %></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="/logout">logout</a>
+<% end %>
+
+<center>
+<h1><%= @product.name %></h1>
+</center>
+
+<h3>Add a review</h3>
+
+<p>
+  <form action="/reviews" method="POST">
+    Product Name: <input type="textarea" name="content" size="50">
+    <input type="submit" value="Add Product">
+  </form>
+</p>

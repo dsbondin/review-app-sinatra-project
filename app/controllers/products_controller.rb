@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
     if logged_in?
       erb :'/products/new'
     else
-      session[:notice] = "You must be logged in to add a product review"
+      session[:notice] = "You must be logged in to add a product"
       redirect '/login'
     end
   end

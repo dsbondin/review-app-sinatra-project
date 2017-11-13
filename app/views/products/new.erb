@@ -1,18 +1,15 @@
 <% if logged_in? %>
 Logged in as: <b><%= current_user.username %></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<a href="/logout">Log Out</a>
+<a href="/logout">logout</a>
 <% end %>
 
 <center>
-  <h1>Add Product to Review</h1>
+  <h1>Add Product</h1>
 </center>
 
-<%= session[:notice] %>
-<% session[:notice] = "" %> <!-- clear error message for future redirects -->
-
-  <p>
-    <form action="/products" method="POST">
-      Product Name: <input type="text" name="product_name" size="50">
-      <input type="submit" value="Add Product">
-    </form>
-  </p>
+<p>
+  <form action="/products" method="POST">
+    Product Name: <input type="text" name="product_name" size="50">
+    <input type="submit" value="Add Product">
+  </form>
+</p>
