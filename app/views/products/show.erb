@@ -10,9 +10,13 @@ Logged in as: <b><%= current_user.username %></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&
 <h3>Product Reviews</h3>
 
 <% @product.reviews.each do |review| %>
-  Left by: <%= review.user.username %><br>
-  <%= review.content %><br>
-  <font color="blue">Product rating: </font><b><%= review.rating %></b></p>
+  <p>
+    <%= review.content %><br>
+    <font color="blue">Product rating: </font><b><%= review.rating %></b>
+    <% if review.user %>
+      <font color="blue">Left by: </font><b><%= review.user.username %></b>
+    <% end %>
+  </p>
 <% end %>
 
 
