@@ -22,4 +22,14 @@ class ReviewsController < ApplicationController
     end
   end
 
+  get '/reviews/:id/edit' do
+    @review = Review.find(params[:id])
+    if logged_in? and @review.user == current_user
+      erb :'reviews/edit'
+    else
+      session[:notice] = "You cannot edit this review"
+      redirect "/products/#{@review.product.id}"
+    end
+  end
+
 end

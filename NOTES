@@ -10,3 +10,10 @@ Product has many Users-reviewers through Reviews
 User columns: name, password_digest
 Product columns: name
 Review columns: content, user_id, product_id
+
+
+TO DO: (as of 11/13)
+
+edit/delete reviews
+user page
+average rating
