@@ -1,0 +1,31 @@
+<% if logged_in? %>
+Logged in as: <b><%= current_user.username %></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="/logout">logout</a>
+<% end %>
+
+<center>
+<h1><%= @review.product.name %></h1>
+</center>
+
+<font color="red">
+<%= session[:notice] %>
+<% session[:notice] = "" %> <!-- clear error message for future redirects -->
+</font>
+
+<h3>Edit review</h3>
+
+<p>
+  <form action="/reviews/<%=@review.id%>/edit" method="POST">
+    <textarea name="content" cols="100" rows="10"><%=@review.content%></textarea>
+
+    <p>Rate this product:
+      <% i = 1 %>
+      <% 5.times do %>
+        <input type="radio" name="rating" value="<%= i %>" <%= 'checked' if @review.rating == i %>><%= i %></input>
+        <% i += 1 %>
+      <% end %>
+    </p>
+
+    <p><input type="submit" value="Submit"></p>
+  </form>
+</p>

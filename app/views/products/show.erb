@@ -25,6 +25,8 @@ Logged in as: <b><%= current_user.username %></b>&emsp;&emsp;&emsp;
       &emsp;&emsp;&emsp;
       <% if review.user == current_user %>
         <a href="/reviews/<%=review.id%>/edit">Edit review</a>
+        &emsp;&emsp;&emsp;
+        <a href="/reviews/<%=review.id%>/delete">Delete review</a>
       <% end %>
     <% end %>
   </p>

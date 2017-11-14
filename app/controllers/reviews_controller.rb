@@ -11,8 +11,8 @@ class ReviewsController < ApplicationController
     end
   end
 
-  post '/reviews/:id/new' do
-    @product = Product.find(params[:id])
+  post '/reviews/:product_id/new' do
+    @product = Product.find(params[:product_id])
     if params[:content].empty? or params[:rating] == nil
       session[:notice] = "Please fill in the review field and rate the product"
       redirect "/reviews/#{@product.id}/new"
@@ -22,14 +22,26 @@ class ReviewsController < ApplicationController
     end
   end
 
-  get '/reviews/:id/edit' do
-    @review = Review.find(params[:id])
+  get '/reviews/:review_id/edit' do
+    @review = Review.find(params[:review_id])
     if logged_in? and @review.user == current_user
       erb :'reviews/edit'
     else
       session[:notice] = "You cannot edit this review"
       redirect "/products/#{@review.product.id}"
     end
+  end
+
+  post '/reviews/:review_id/edit' do
+    @review = Review.find(params[:review_id])
+    @review.update(content: params[:content], rating: params[:rating])
+    redirect "/products/#{@review.product.id}"
+  end
+
+  get '/reviews/:review_id/delete' do
+    @review = Review.find(params[:review_id])
+    @review.delete if logged_in? and @review.user == current_user
+    redirect "/products/#{@review.product.id}"
   end
 
 end

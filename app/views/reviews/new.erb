@@ -19,11 +19,11 @@ Logged in as: <b><%= current_user.username %></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&
     <textarea name="content" cols="100" rows="10"></textarea>
 
     <p>Rate this product:
-      <input type="radio" name="rating" value="1">1</input>
-      <input type="radio" name="rating" value="2">2</input>
-      <input type="radio" name="rating" value="3">3</input>
-      <input type="radio" name="rating" value="4">4</input>
-      <input type="radio" name="rating" value="5">5</input>
+      <% i = 1 %>
+      <% 5.times do %>
+        <input type="radio" name="rating" value="<%= i %>"><%= i %></input>
+        <% i += 1 %>
+      <% end %>
     </p>
 
     <p><input type="submit" value="Submit"></p>
