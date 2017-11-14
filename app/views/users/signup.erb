@@ -1,8 +1,10 @@
 <center>
   <h1>Sign Up</h1>
 
+  <font color="red">
   <%= session[:notice] %>
   <% session[:notice] = "" %> <!-- clear error message for future redirects -->
+  </font>
 
   <p>
     <form action="/signup" method="POST">
