@@ -1,0 +1,10 @@
+<body bgcolor="#F8F9F9">
+
+<% if logged_in? %>
+Logged in as: <b><%= current_user.username %></b>&emsp;&emsp;&emsp;
+<a href="/logout">logout</a>
+<% end %>
+
+<%= yield %>
+
+</body>
