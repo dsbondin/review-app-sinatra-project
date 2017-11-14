@@ -3,6 +3,11 @@ Logged in as: <b><%= current_user.username %></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&
 <a href="/logout">logout</a>
 <% end %>
 
+<font color="red">
+<%= session[:notice] %>
+<% session[:notice] = "" %> <!-- clear error message for future redirects -->
+</font>
+
 <center>
   <h1>Add Product</h1>
 </center>

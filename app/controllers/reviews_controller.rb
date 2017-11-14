@@ -11,4 +11,15 @@ class ReviewsController < ApplicationController
     end
   end
 
+  post '/reviews/:id/new' do
+    @product = Product.find(params[:id])
+    if params[:content].empty? or params[:rating] == nil
+      session[:notice] = "Please fill in the review field and rate the product"
+      redirect "/reviews/#{@product.id}/new"
+    else
+      @review = @product.reviews.create(content: params[:content], rating: params[:rating].to_i, user_id: current_user.id)
+      redirect "/products/#{@product.id}"
+    end
+  end
+
 end
