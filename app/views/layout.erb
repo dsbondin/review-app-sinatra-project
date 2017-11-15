@@ -1,14 +1,25 @@
-<body bgcolor="#F8F9F9">
+<head>
+  <style>
+    div#d {
+      width: 960px;
+      height: 100%;
+      margin: auto;
+      background-color: #F8F9F9;
+    }
+  </style>
+</head>
 
-<% if logged_in? %>
-Logged in as: <b><%= current_user.username %></b>&emsp;&emsp;&emsp;
-<a href="/logout">logout</a>
-<% end %>
+<body>
+  <div id="d">
+    <div align="right">
+      <% if logged_in? %>
+        Logged in as: <b><%= current_user.username %></b>&emsp;&emsp;&emsp;
+        <a href="/logout">logout</a>
+      <% end %>
+    </div>
 
-<%= yield %>
+    <%= yield %>
 
-
-
-
-<center><a href="/">Home</a></center>
+    <center><a href="/">Home</a></center>
+  </div>
 </body>
