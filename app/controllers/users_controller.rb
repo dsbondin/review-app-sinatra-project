@@ -9,13 +9,18 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if username_taken?
+    if User.find_by(username: params[:username])
       session[:notice] = "This username is taken, please try something else"
       redirect '/signup'
     elsif !params[:username].empty? and !params[:password].empty?
-      @user = User.create(params)
-      session[:user_id] = @user.id
-      redirect '/products'
+      @user = User.new(params)
+      if @user.save
+        session[:user_id] = @user.id
+        redirect '/products'
+      else
+        session[:notice] = "Failures!!"
+        redirect '/signup'
+      end
     else
       session[:notice] = "Username or password can't be empty"
       redirect '/signup'
@@ -44,6 +49,11 @@ class UsersController < ApplicationController
   get '/logout' do
     session.clear if session[:user_id]
     redirect '/'
+  end
+
+  private
+  def username_taken?
+    !!User.find_by(username: params[:username])
   end
 
 end
