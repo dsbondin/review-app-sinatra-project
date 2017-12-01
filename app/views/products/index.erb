@@ -2,12 +2,15 @@
 
 <center><h1>Products</h1></center>
 
+<ul>
+  <% @products.each do |product| %>
+    <li><a href="/products/<%=product.id%>"><%= product.name %></a></li>
+  <% end %>
+</ul>
+<br/>
 
-<% @products.each do |product| %>
-  <p><a href="/products/<%=product.id%>"><%= product.name %></a></p>
-<% end %>
-
-
-<% if logged_in? %>
-  <p><a href="/products/new">Add a new product</a></p>
-<% end %>
+<div>
+  <% if logged_in? %>
+    <a href="/products/new">Add a new product</a>
+  <% end %>
+</div>
