@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
       @product = Product.find(params[:id])
       erb :'reviews/new'
     else
-      session[:notice]  = "You must be logged in to add a product review"
+      session[:notice] = "You must be logged in to add a product review"
       redirect '/login'
     end
   end
@@ -23,8 +23,10 @@ class ReviewsController < ApplicationController
   end
 
   get '/reviews/:review_id/edit' do
+    # check if a user is logged in , but if they aren't redirect to login with amessage they need to login
+    authenticate_user
     @review = Review.find(params[:review_id])
-    if logged_in? and @review.user == current_user
+    if @review.user == current_user
       erb :'reviews/edit'
     else
       session[:notice] = "You cannot edit this review"
@@ -33,8 +35,9 @@ class ReviewsController < ApplicationController
   end
 
   post '/reviews/:review_id/edit' do
+    authenticate_user
     @review = Review.find(params[:review_id])
-    if logged_in? and @review.user == current_user
+    if @review.user == current_user
       @review.update(content: params[:content], rating: params[:rating])
     else
       session[:notice] = "You cannot edit this review"
