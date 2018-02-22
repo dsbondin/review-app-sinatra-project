@@ -12,7 +12,3 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem "tux"
-
-group :development do
-  gem 'sqlite3'
-end
