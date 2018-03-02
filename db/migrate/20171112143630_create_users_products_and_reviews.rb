@@ -1,4 +1,4 @@
-class CreateUsersProductsAndReviews < ActiveRecord::Migration
+class CreateUsersProductsAndReviews < ActiveRecord::Migration[5.1]
   def change
 
     create_table :users do |t|
